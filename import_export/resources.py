@@ -740,6 +740,8 @@ class Resource(metaclass=DeclarativeMetaclass):
 
         if use_transactions is None:
             use_transactions = self.get_use_transactions()
+        # JRZ hardcoding
+        use_transactions = False
 
         db_connection = self.get_db_connection_name()
         connection = connections[db_connection]
@@ -749,6 +751,7 @@ class Resource(metaclass=DeclarativeMetaclass):
             raise ImproperlyConfigured
 
         using_transactions = (use_transactions or dry_run) and supports_transactions
+        using_transactions = False
 
         if self._meta.batch_size is not None and (not isinstance(self._meta.batch_size, int) or self._meta.batch_size < 0):
             raise ValueError("Batch size must be a positive integer")
