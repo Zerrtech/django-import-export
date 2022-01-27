@@ -129,6 +129,7 @@ class ImportMixin(BaseImportMixin, ImportExportMixinBase):
                                     if kwargs.get('original_file_name') is None
                                     else kwargs.get('original_file_name'),
                                     user=request.user,
+                                    use_transactions=False, # JRZ hardcoding
                                     **imp_kwargs)
 
     def process_result(self, result, request):
